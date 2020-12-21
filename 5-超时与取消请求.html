@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-超时与取消请求</title>
+    
+</head>
+<body>
+    <input type="text"><br>
+    <button>点击取消</button>
+    <script>
+        //获取元素
+        const input = document.querySelector('input');
+        const btn = document.querySelector('button');
+        let xhr;//ajax 请求对象变量
+        //绑定事件  
+        input.onblur = function(){
+            //判断
+            if(xhr) {
+                //如果 xhr 已经是一个对象了, 则先运行 abort 方法取消上一个请求
+                xhr.abort();
+            }
+            //JS  注意大小写
+            xhr = new XMLHttpRequest();
+            //设置超时时间
+            // xhr.timeout = 1000;
+            //当超时以后自动触发
+            xhr.ontimeout = function(){
+                console.log('请求超时啦, 请稍后再试!');
+            }
+            //
+            xhr.open('GET', 'http://127.0.0.1/delay-server');
+            //
+            xhr.send();
+            //
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    //打印响应体
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+    
+        //按钮绑定事件 abort
+        btn.onclick = function(){
+            xhr.abort();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX-GET请求发送</title>
+    <style>
+        #result{
+            width:200px;
+            height:100px;
+            border:solid 1px #000;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送GET请求</button>
+    <div id="result"></div>
+    <script>
+        //获取元素
+        const btn = document.querySelector('button');
+        const result = document.querySelector('#result');
+
+        //绑定事件
+        btn.onclick = function(){
+            //AJAX 使用步骤
+            //1. 创建 AJAX  请求对象
+            const xhr = new XMLHttpRequest();
+            //2. 初始化
+            xhr.open('GET', 'http://127.0.0.1/server?keyword=abc');
+            //3. 发送请求
+            xhr.send();
+            //4. 绑定事件 处理响应结果
+            // onreadystatechange 
+            // on  when的意思 当....时候
+            // readyState 是 xhr 对象中的一个属性  状态属性 总共 5 个值 0 1 2 3 4
+            // change 改变
+            xhr.onreadystatechange = function(){
+                //判断
+                if(xhr.readyState === 4){
+                    //查看服务器响应的结果
+                    //响应状态码
+                    console.log(xhr.status);
+                    //响应状态字符串
+                    console.log(xhr.statusText);
+                    //响应头
+                    console.log(xhr.getAllResponseHeaders());
+                    //响应体
+                    console.log(xhr.responseText);
+
+                    //
+                    result.innerHTML = xhr.responseText;
+                }
+            }
+            
+        }   
+    </script>
+</body>
+</html>

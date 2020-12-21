@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 发送 AJAX 请求</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- 
+        jQuery 复习
+        获取元素
+            $('#id')
+            $('.class')
+            $('div')
+            $('#id .class .class div')
+        属性操作
+            $('selector').attr();             $('button').eq(0).attr('name');    $('button').eq(0).attr('name', 'def'); 
+            $('selector').removeAttr();
+        文本操作
+            $('selector').html();
+            $('selector').text();
+        样式操作
+            $('selector').css('background','#aef');
+            $('selector').css('background');
+            $('selector').addClass();
+            $('selector').removeClass();
+     -->
+    <button>GET</button>
+    <button>POST</button>
+    <button>通用方法发送</button>
+    <script>
+        $('button').eq(0).click(function(){
+            /**
+             * url  
+             * data
+             * callback
+             */
+            $.get('http://127.0.0.1/jquery-server', {name:'abc', keyword:'def'}, function(data) {
+                console.log(data);
+            });
+        });
+
+        $('button').eq(1).click(function(){
+            $.post('http://127.0.0.1/jquery-server', {name:'abc', keyword:'def'}, function(data) {
+                console.log(data);
+            });
+        });
+
+        $('button').eq(2).click(function(){
+            //通用方法发送 AJAX 请求
+            $.ajax({
+                //请求类型
+                type: 'POST',
+                //URL
+                url: 'http://127.0.0.1/jquery-server',
+                //请求头信息
+                headers: {
+                    c:300,
+                    d: 400
+                },
+                //发送的数据
+                data: {
+                    a:100,
+                    b:200
+                },
+                //成功的回调
+                success: function(data){
+                    console.log(data);
+                },
+                //失败的回调
+                error: function(){
+                    console.log('出错啦! 发送失败');
+                },
+                //超时时间
+                timeout: 2000
+            })
+        });
+
+    </script>
+</body>
+</html>

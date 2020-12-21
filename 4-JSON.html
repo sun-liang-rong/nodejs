@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON响应</title>
+    <style>
+        #box{
+            width:400px;
+            height: 300px;
+            border:solid 1px #0cb;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p>学校: <span id="school"></span></p>
+        <p>校区: <span id="xiaoqu"></span></p>
+    </div>
+    <script>
+        const box = document.querySelector('#box');
+        const school = document.querySelector('#school');
+        const xiaoqu = document.querySelector('#xiaoqu');
+
+        //绑定事件
+        box.ondblclick = function(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1/json-server');
+            xhr.send();
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState === 4){
+                    //响应体的字符串结果
+                    let body = xhr.responseText;
+                    //将 JSON 字符串转为 JS 对象
+                    let data = JSON.parse(body);
+                    //设置内容
+                    school.innerHTML = data.name;
+                    xiaoqu.innerHTML = data.pos.join('-');// ['beijing','shanghai','shenzhen']
+                }
+            }
+        }
+    </script>
+</body>
+</html>

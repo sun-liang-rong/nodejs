@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP的实践</title>
+    <style>
+        #abc {
+            width: 400px;
+            height: 200px;
+            border: solid 1px #000;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送跨域请求</button>
+    <div id="abc"></div>
+    <script>
+        //获取元素
+        const button = document.querySelector("button");
+        const abc = document.querySelector("#abc");
+        //4. 创建一个回调函数
+        function ccc(data){
+            abc.innerHTML = data;
+        }
+        //绑定事件
+        button.addEventListener('click', function(){
+            //1. 创建 script 标签
+            let script = document.createElement('script');
+            //2. 设置 script 标签的 src
+            script.src = 'http://127.0.0.1:8001/jsonp-server?callback=ccc';
+            //3. 将 script 标签插入到文档中
+            document.body.appendChild(script);
+        });
+
+    </script>
+</body>
+
+</html>
