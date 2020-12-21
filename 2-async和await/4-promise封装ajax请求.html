@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击获取天气</button>
+
+    <script>
+        /**
+         * 功能发送 AJAX GET 请求
+         * 函数名 sendAJAX  
+         * 参数 :  url
+         * 返回结果: promise 对象 成功的结果值为『响应体』  失败的结果值为『响应状态码』
+         */
+        function sendAJAX(url){
+            return new Promise((resolve, reject) => {
+                //发送 AJAX 
+                const xhr = new XMLHttpRequest();
+                //
+                xhr.open("GET", url);
+                //
+                xhr.send();
+                //
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            //成功
+                            resolve(xhr.responseText);
+                        }else{
+                            //失败
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+        }
+
+        const btn = document.querySelector('button');
+
+        btn.onclick = async function(){
+            //天气 url (接口)
+            let url = 'https://www.tianqiapi.com/api/?version=v1&city=%E5%8C%97%E4%BA%AC&appid=23941491&appsecret=TXoD5e8P';
+            //promise 形式处理结果
+            // sendAJAX(url).then(body => {
+            //     console.log(body);
+            // }, status => {
+            //     console.error(status);
+            // })
+            //async 与 await 形式处理结构
+            let body = await sendAJAX(url);
+            console.log(body);
+        }
+
+
+    </script>
+</body>
+</html>

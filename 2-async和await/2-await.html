@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>await</title>
+</head>
+<body>
+    <script>
+
+        async function main(){
+            //1. await 右侧不是 Promise 对象
+            // let result = await 123;
+            //2. await 右侧为 promise 对象
+            // let result = await (new Promise((resolve, reject) => {
+            //     resolve('success');
+            // }));
+            // let p = Promise.resolve('OK');
+            // let p = new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //         resolve('Oh yeah');
+            //     }, 2000);
+            // })
+            // let result = await p;
+            //3. 如果 promise 对象失败
+            try{
+                let p = new Promise((resolve, reject) =>{
+                    reject('error');
+                });
+                let result = await p;
+                console.log(result);
+            }catch(e){
+                console.log(e);
+            }
+        }
+
+        main();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button>点击发送请求</button>
+    <script>
+        // console.log(111);
+        // let btn = document.querySelector('button')
+        // btn.onclick = function(){
+        //     alert(123);
+        // }
+
+        // setTimeout(() => {
+        //     alert(234);
+        // }, 100);
+
+        // // xhr.onreadystatechange = function(){
+
+        // // }
+        // console.log(222);
+
+        // let p = new Promise((resolve, reject) =>{
+        //     resolve('iloveyou');
+        // });
+
+        // p.then(value => {
+        //     console.log(value);
+        // })// 异步
+
+        // console.log(333);
+
+        console.log(111);
+        setTimeout(() => {
+            console.log(222);
+        });
+        new Promise((resolve, reject) => {
+            console.log(333);
+            resolve();
+        })
+        .then(value => {
+            console.log(444);
+        })
+
+
+    </script>
+</body>
+</html>

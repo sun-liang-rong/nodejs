@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+<body>
+    <script>
+        // async 函数
+        async function main(){
+            //1. 如果返回值为非 Promise 类型值
+            // return 'iloveyou';
+            //2. 抛出一个错误
+            // throw '有点问题哦'
+            //3. 如果返回值为 promise 对象
+            // return new Promise((resolve, reject) => {
+            //     // resolve('success');
+            //     reject('error');
+            // });
+
+        }
+
+        let result = main();
+
+        console.log(result);
+
+    </script>
+</body>
+</html>
