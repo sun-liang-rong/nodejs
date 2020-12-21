@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS错误处理</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 语法固定 try...catch   try 尝试的意思  catch 捕获
+         * 1. try catch捕获到错误之后, 后续代码可以继续执行
+         * 2. catch 可以将错误信息捕获到. e 是一个对象, 有message和stack两个属性
+         * 3. 抛出错误之后, 在后续的 try 里面的代码不会执行
+         * 4. try 不能捕获语法错误. 其他三种类型错误可以捕获.
+         * 5. 允许使用 throw 手动的抛出错误
+         * 6. 抛出任意类型的数据
+         */
+
+        try {
+            // console.log(a);
+            // console.log(111);//这里代码不会执行
+            //手动抛出错误
+            let username = '';
+            if(!username){
+                // throw 抛
+                // throw new Error('用户名不能为空');
+                //抛出任意类型数据
+                throw 123;
+            }
+        } catch (e) { //e 是一个对象
+            console.dir(e);
+        }
+
+        // alert('继续执行哦!!');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中断promise链</title>
+</head>
+<body>
+    <script src="./Promise.js"></script>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            resolve('success');
+            // reject('error');
+        });
+
+        p.then(value=>{
+            console.log(111);
+        }).then(value=>{
+            console.log(222);
+            return new Promise(() => {});
+        }, reason=>{
+            console.log(333);
+        }).then(value=>{
+            console.log(444);
+        },reason => {
+            console.log(555);
+        }).catch(reason => {
+            console.log(666);
+        }).then(value=>{
+            console.log(777);
+        })
+
+    </script>
+</body>
+</html>

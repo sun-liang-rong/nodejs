@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>catch 方法</title>
+</head>
+<body>
+    <script>
+        // catch 是属于 Promise 的实例对象的
+        const p = new Promise((resolve, reject) => {
+            //任务代码
+            reject('失败啦');
+        });
+
+        // p.then(data =>{}, reason => {
+        //     console.error(reason);
+        // });
+
+        //catch 方法指定失败回调
+        p.catch(reason => {
+            // warn 属于 console 的一个方法
+            console.warn(reason);
+        });
+
+    </script>
+</body>
+</html>

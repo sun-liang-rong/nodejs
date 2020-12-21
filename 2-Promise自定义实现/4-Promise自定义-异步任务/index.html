@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义Promise</title>
+</head>
+<body>
+    <script src="./Promise.js"></script>
+    <script>
+        //2. 异步任务 then 方法实现
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                //修改状态
+                // resolve('ok');
+                reject('error');
+            }, 1000)
+        });
+
+        //调用then方法
+        p.then(value => {
+            console.log(value);
+        }, reason => {
+            console.error(reason);
+        });
+
+        console.log(p);
+
+    </script>
+</body>
+</html>

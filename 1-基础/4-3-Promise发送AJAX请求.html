@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装AJAX请求</title>
+</head>
+<body>
+    <button>点击发送AJAX</button>
+    <ul>
+
+    </ul>
+    <script>
+        let btn = document.querySelector('button');
+
+        btn.onclick = function(){
+            let p = new Promise((resolve, reject) => {
+                //异步任务
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", 'https://api.apiopen.top/getJok');
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            //成功的情况
+                            resolve({
+                                status: xhr.status,
+                                statusText: xhr.statusText,
+                                headers: xhr.getAllResponseHeaders(),
+                                body: xhr.responseText,
+                            });//成功的结果值是灵活的
+                        }else{
+                            //失败的情况
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+            //对成功和失败的结果进行处理
+            p.then(value => {
+                //输出一下成功的结果
+                console.log(value);
+            }, reason => {
+                console.error(reason);
+            });
+        }
+
+    </script>
+</body>
+</html>

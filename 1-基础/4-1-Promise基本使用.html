@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基本使用</title>
+</head>
+<body>
+    <button id="btn">点击抽奖</button>
+    <script>
+        function rand(m,n){
+            return Math.ceil(Math.random() * (n-m+1)) + m-1;
+        }
+        // 点击按钮, 1s 后显示是否中奖.  30%概率中奖
+        // 中奖弹出   恭喜恭喜  显示中奖号码
+        // 未中奖弹出  再接再厉  显示号码
+        const btn = document.querySelector('button');
+        // btn.onclick = function(){
+        //     setTimeout(() => {
+        //         //中奖概率 30%
+        //         let n = rand(1, 100);
+        //         //检测是否 小于等于 30
+        //         if(n <= 30) {
+        //             alert('恭喜恭喜, 您的中奖为' + n);
+        //         }else{
+        //             alert('再接再厉, 您的号码为' + n);
+        //         }
+        //     }, 1000)
+        // }
+
+        btn.onclick = function(){
+            //实例化 Promise 对象  resolve 解决    reject 拒绝
+            let p = new Promise((resolve, reject) => {
+                //异步操作代码
+                setTimeout(() => {
+                    //中奖概率 30%
+                    let n = rand(1, 100);
+                    //检测是否 小于等于 30
+                    if(n <= 30) {
+                        //成功
+                        // alert('恭喜恭喜, 您的中奖为' + n);
+                        resolve(n);
+                    }else{
+                        //失败
+                        // alert('再接再厉, 您的号码为' + n);
+                        reject(n);
+                    }
+                }, 1000)
+            });
+
+            //处理成功和失败的情况 then 是实例对象中的方法  单词本身意思 『然后』
+            //value 值     reason 原因
+            p.then((value) => {
+                console.log('成功啦, 恭喜中奖啦!! 中奖号码为 '+value );
+            }, (reason) => {
+                console.error('失败啦, 再接再厉  号码为' + reason);
+            });
+        }
+        
+    </script>
+</body>
+
+</html>

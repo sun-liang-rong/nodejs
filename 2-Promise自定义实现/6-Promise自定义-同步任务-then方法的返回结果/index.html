@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义Promise</title>
+</head>
+<body>
+    <script src="./Promise.js"></script>
+    <script>
+        //3. 同步任务 then 方法返回值实现
+        let p = new Promise((resolve, reject) => {
+            //修改状态
+            // resolve('ok');
+            reject('error');
+        });
+
+        //调用then方法
+        const result = p.then(value => {
+            // console.log(value);
+            // return 123;
+            return new Promise((resolve, reject) => {
+                // resolve('success');
+                reject('eeee');
+            })
+        }, reason => {
+            // console.error(reason);
+            // return 'abc';
+            return new Promise((resolve, reject) => {
+                // resolve('ok');
+                reject('erroxxxr');
+            })
+        });
+
+        console.log(result);
+
+
+    </script>
+</body>
+</html>

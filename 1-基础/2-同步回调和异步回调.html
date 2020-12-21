@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 同步回调  promise 执行器函数
+        // const arr = [1,2,3];
+        // arr.forEach(item => {
+        //     console.log(item);
+        // });
+        // console.log('over');
+
+        //异步回调
+        setTimeout(()=>{
+            console.log(1);
+        }, 1000)
+        console.log(2);
+
+        /**
+         * fs.readFile('./index.html', (err, data)=>{
+         * 
+         * })
+         * 
+         * mongoose.connection.on('open', () => {
+         * 
+         * })
+         * 
+         * $.get('./server', {}, function(data){
+         * 
+         * })
+         * 
+         * 
+         */
+
+    </script>
+</body>
+</html>

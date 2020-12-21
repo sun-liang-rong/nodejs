@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>resolve</title>
+</head>
+<body>
+    <script>
+        // resolve 是 Promise 函数对象的方法
+        // 将一个值转化为 Promise 对象
+        let p = Promise.resolve(123);
+        let p2 = Promise.resolve('abc');
+        let p3 = Promise.resolve(new Promise((resolve, reject) => {
+            reject('error');
+        }));
+
+        console.log(p3);
+    </script>
+</body>
+</html>

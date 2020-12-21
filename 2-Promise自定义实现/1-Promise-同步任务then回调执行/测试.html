@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装 同步任务 then 方法回调执行</title>
+    <script src="./Promise.js"></script>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            //同步修改状态
+            reject('error');
+            resolve('ok');
+
+            // alert(111);
+            //抛出错误
+            // throw '出了点问题'; 
+
+            // setTimeout(() => {
+            //     // resolve('success');
+            //     reject('error');
+            // }, 1000);
+        });
+
+        p.then(value => {
+            console.log(value);
+        }, reason => {
+            console.warn(reason);
+        });
+
+        p.then(value => {
+            alert(value);
+        }, reason => {
+            alert(reason);
+        });
+
+        console.log(p);
+    </script>
+</body>
+</html>

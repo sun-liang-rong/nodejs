@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all</title>
+</head>
+<body>
+    <script>
+        // all 方法也是属性函数对象的
+        // 接受一个参数, promise 对象数组
+        // 返回值
+        // 若数组中每一个promise对象状态都为 fulfilled 则返回的 promise 对象状态为成功, 并且数组中成功promise对象的结果, 为返回 promise 对象成功的结果
+        // 若数组中有一个promise对象是失败的, 则返回的 promise 对象状态为失败, 且返回的promise对象失败的结果为, 那个失败promise对象失败结果
+        let p1 = new Promise((resolve, reject) => {
+            resolve('ok');
+        });
+        // let p2 = Promise.resolve('success');
+        let p2 = Promise.reject('error');
+        let p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('yeah!!');
+            }, 1000);
+        });
+
+        let result = Promise.all([p1, p2, p3]);
+
+        console.log(result);
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>race</title>
+</head>
+<body>
+    <script>
+        // race 是属于 Promise 函数对象的.  race 赛跑
+        // race 接受一个 promise 的数组
+        // 返回结果也是 promise 对象
+        // 对象的状态由数组中, 第一个改变状态的对象决定.
+        let p2 = Promise.resolve('success');
+
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('ok');
+            },10);
+        });
+
+        const result = Promise.race([p1, p2]);
+
+        console.log(result);
+    </script>
+</body>
+
+</html>

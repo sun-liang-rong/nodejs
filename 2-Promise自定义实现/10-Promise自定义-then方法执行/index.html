@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>then方法回调执行是异步的</title>
+</head>
+<body>
+    <script src="./Promise.js"></script>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            resolve('success');
+        });
+
+        p.then(value=>{
+            // console.log(111);
+            return 'abc';
+        });
+
+        console.log(222);
+
+    </script>
+</body>
+</html>
